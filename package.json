@@ -1,0 +1,31 @@
+{
+  "name": "okayserversample",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "debug": "nodemon --exec babel-node ./bin/www",
+    "build": "babel app --out-dir ./dist --source-maps"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.3",
+    "cross-fetch": "^3.0.4",
+    "crypto": "^1.0.1",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "http-errors": "~1.6.2",
+    "morgan": "~1.9.0",
+    "pug": "2.0.0-beta11"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.6",
+    "@babel/node": "^7.0.0",
+    "@babel/preset-env": "^7.1.6",
+    "@babel/register": "^7.0.0",
+    "babel-polyfill": "^6.26.0",
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.6"
+  }
+}
