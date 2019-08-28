@@ -20,7 +20,7 @@
 
 ### Name
 
- The text under the **Name** column in the **Tenants** table is the name of the company you provided at the time of your sign up. 
+ The text under the **Name** column in the **Tenants** table is the name of the company you provided at the time of your sign up.
 
 ### Status
 
@@ -45,13 +45,13 @@ To be able to recieve feedbacks from Okay servers you will need to add a valid c
 **LINKING USERS**
 ===============
 
-Before we can authorize transactions using **Okay** we need to link our users to **Okay** so that we can identify all transactions coming from different users.
+Before we can authorize transactions using **Okay**, we need to link our users to **Okay** so that we can identify all transactions coming from different users.
 
 ### Provide a Unique Value Generator
 
 Before we proceed to linking your users to **Okay**. We need to generate and store a **Unique Identifier** for every end-user in order to differentiate all your users. You can use any alpha-numeric character to compose this value, for example a **UUID**. We will be using this value in all our requests as **User Unique Identifier**. This normally serves as value to the **"userExternalId"** key in our payload.
 
-### ***A typical structure of our JSON payload for linking users***
+### ***This is a typical structure of our JSON payload for linking users***
 
 ```JSON
   {
@@ -171,7 +171,7 @@ Just like linking a user, we will be sending a JSON payload as a **POST** reques
 
 For this request, we will be adding two new fields, the `type` and `authParams` fields.
 
-The `type` key in our JSON payload is a field that allows us to clearly specify the kind of authorization/authentication we choose to initiate. The `type` key can take as value any of these authentication type listed below.
+The `type` key in our JSON payload is a field that allows us to clearly specify the kind of authorization/authentication we choose to initiate. The `type` key can take as value any of these authentication types listed below.
 
 - "AUTH_OK"
 - "AUTH_PIN"
@@ -182,7 +182,7 @@ The `type` key in our JSON payload is a field that allows us to clearly specify 
 - "ENROLLMENT_PROTECTORIA_OK"
 - "UNKNOWN"
 
-The `authParams` just contains a message and the message header that will be displayed on the Okay App. The message is intended for the user to read, in order to grant Okay the required permission to complete a transaction/authentication.
+The `authParams` just contains a **_message_** (`guiText`) and the **_message header_** (`guiHeader`) that will be displayed on the Okay App. The **message** is intended for the user to read, in order to grant Okay the required permission to complete a transaction/authentication.
 
 We can now proceed to sending our request to `Okay` like so.
 
@@ -247,7 +247,7 @@ When your request is correct you'll get a response with the following body struc
 
 For better reference to all possible status code and messages you can recieve from **Okay** server please refer to this [link](https://github.com/Okaythis/okay-example/wiki/Server-Response-Status-Codes).
 
-The `sessionExternalId` can be used to check status of this request. We will see shortly, in the **Check Authentication/Authorization Status** section, how we can use the  `sessionExternalId` value retrieved from the response to check the status of our transaction.
+The `sessionExternalId` can be used to check the status of this request. We will see shortly, in the **Check Authentication/Authorization Status** section, how we can use the  `sessionExternalId` value retrieved from the response to check the status of our transaction.
 
 **Check Authentication/Authorization Status**
 =============================================
@@ -269,7 +269,7 @@ After Authorizing/Authenticating a user we can check the status of that request 
 }
 ```
 
-The `signature` key here has to match the request `signature`
+Send a request to check the status of your transaction.
 
 ```js
   const crypto = require('crypto')
@@ -327,10 +327,63 @@ When your request is correct you'll get a response with the following body struc
 
 ```
 
-The `authResult` field may contain any of these values as a user response from the mobile app.
+The `authResult` field may contain any of these values from the table below, as a user response from the mobile app.
 
 | DataType |Data|
 -------|--------
 | 101 |CANCEL |
 | 102 |PIN |
 | 103 |OK |
+
+ **Callbacks**
+ =============
+
+ Some actions might take users some time to accomplish. To prevent long lasting requests and overloading the Okay server with enormous amount of the **Check** requests, Okay server sends callbacks when the long lasting action is completed. The target URI should be configured at the Okay website on the Tenant Settings page.
+
+ **Note:** every callback has a signature value. Check it to make sure the request is received from the Okay server.
+
+## Link User Callback
+
+ When an end user completes linking, Okay server sends the following JSON data to the callback url that was specified on the tenant settings page:
+
+ ```JSON
+  {
+    "type": 101,
+    "userExternalId": "unique user identifier",
+    "signature": "callback signature"
+  }
+ ```
+
+ Check Callback Types page for all available values of type.
+
+## Authentication (Authorization) Callback
+
+ Okay sends this JSON body when a transaction response from Okay mobile application is received.
+
+ ```JSON
+  {
+    "type": 102,
+    "userExternalId": "unique user identifier",
+    "sessionExternalId": "unique session identifier",
+    "authResult": {
+        "dataType": "<result data type code>",
+        "data": "user response"
+    },
+    "signature": "callback signature"
+  }
+
+ ```
+
+ The `authResult` key in the response above, has the same structure as the `authResult` returned from **Check Authentication/Authorization Status** request.
+
+## Unlink User Callback
+
+ When an end user removes your service from the list of connected services from Okay, Okay sends to your server via the callback url a JSON response having the structure below:
+
+ ```JSON
+  {
+    "type": 103,
+    "userExternalId": "unique user identifier",
+    "signature": "callback signature"
+  }
+ ```
