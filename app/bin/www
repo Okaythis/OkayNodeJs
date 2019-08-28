@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 require('dotenv').config();
-require('@babel/core');
+// require('@babel/core');
 var app = require('../app');
 var debug = require('debug')('okayserversample:server');
 var http = require('http');
