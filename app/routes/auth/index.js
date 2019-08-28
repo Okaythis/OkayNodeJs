@@ -20,7 +20,7 @@ router.post('/', (req, res) => {
     guiHeader: 'Authorization requested'
   };
   const type = AUTH_TYPES.OK
-  const hashStr = `${tenantId}${userExternalId}${secret}`;
+  const hashStr = `${tenantId}${userExternalId}${authParams.guiHeader}${authParams.guiText}${type}${secret}`;
   const signature = createHashSignature(hashStr);
   console.log(signature);
 
