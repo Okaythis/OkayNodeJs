@@ -10,7 +10,7 @@ import axios from 'axios'
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.post('/', (req, res) => {
  const feedback = req.body || null;
 
  res.json({

@@ -45,7 +45,7 @@ router.post('/', (req, res) => {
       });
     })
     .catch((error) => {
-      res.status(400).json({
+      res.status(500).json({
         msg: 'Authentication unsuccessful',
         data: error.response.data
       });
