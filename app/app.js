@@ -10,6 +10,7 @@ var usersRouter = require('./routes/users');
 import linkingRouter from './routes/linking';
 import authRouter from './routes/auth'
 import checkRouter from './routes/check'
+import callbackRouter from './routes/callback'
 
 var app = express();
 
@@ -24,6 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/callback', callbackRouter);
 app.use('/link', linkingRouter);
 app.use('/auth', authRouter);
 app.use('/check', checkRouter)
