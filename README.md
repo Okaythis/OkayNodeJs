@@ -1,4 +1,22 @@
-# Integrating Okay to your server
+Install dependencies
+```
+  yarn install
+```
+Build App
+```
+  yarn build
+```
+Run App
+```
+  yarn start
+```
+
+Debug App
+```
+  yarn debug
+```
+
+# Getting Started with Integrating Okay to your server
 
  To proceed with Okay integration, you are required to create an account using this [link](https://okaythis.com/signup). Once you are successfully signed up, login in with the credentials that you used to create the account [here](https://demostand.okaythis.com/multi-tenant-admin/login).
 
