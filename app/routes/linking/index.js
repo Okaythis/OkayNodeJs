@@ -11,7 +11,8 @@ const tenantId = process.env.TENANT_ID;
 const secret = process.env.SECRET;
 
 router.post('/', (req, res) => {
-  const userExternalId = STORE.users[0].uuid;
+  // const userExternalId = STORE.users[0].uuid;
+  const userExternalId = req.query.userExternalId || null;
 	const hashStr = `${tenantId}${userExternalId}${secret}`;
   const signature = createHashSignature(hashStr);
   
