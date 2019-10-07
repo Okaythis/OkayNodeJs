@@ -40,7 +40,7 @@ router.post('/', (req, res) => {
     })
     .then((response) => {
       res.json({
-        msg: 'Authentication successful',
+        //msg: 'Authentication successful',
         data: response.data
       });
     })

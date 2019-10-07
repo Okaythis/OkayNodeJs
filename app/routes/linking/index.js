@@ -31,7 +31,7 @@ router.post('/', (req, res) => {
 		.then((response) => {
 			console.log(response.data);
 			res.json({
-        msg: 'Linking successful',
+       // msg: 'Linking successful',
         data: response.data
 			});
 		})
