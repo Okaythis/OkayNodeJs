@@ -51,4 +51,41 @@ router.post('/', (req, res) => {
 
 })
 
+router.post('/otp', (req, res) => {
+  const userExternalId = req.query.userExternalId || null;
+  const authParams = {
+    guiText: 'Do you okay this transaction',
+    guiHeader: 'Authorization requested'
+  };
+  const type = AUTH_TYPES.PIN
+  const hashStr = `${tenantId}${userExternalId}${authParams.guiHeader}${authParams.guiText}${type}${secret}`;
+  const signature = createHashSignature(hashStr);
+  console.log(signature);
+
+  axios({
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      url: `${PSS_BASE_URL}/gateway/auth`,
+      data: {
+        tenantId,
+        userExternalId,
+        type,
+        authParams,
+        signature
+      }
+    })
+    .then((response) => {
+      res.json(response.data);
+    })
+    .catch((error) => {
+      res.status(500).json({
+        msg: 'Authentication unsuccessful',
+        data: error.response.data
+      });
+    });
+
+})
+
 export default router
