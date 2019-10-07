@@ -51,7 +51,7 @@ router.post('/', (req, res) => {
 
 })
 
-router.post('/otp', (req, res) => {
+router.post('/pin', (req, res) => {
   const userExternalId = req.query.userExternalId || null;
   const authParams = {
     guiText: 'Do you okay this transaction',
