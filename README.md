@@ -84,6 +84,8 @@ SECRET =REPLACE_WITH_YOUR_TENANT_SECRET // change from secret to your tenant sec
 
 If you have setup the variables correctly please run `yarn debug` from the root of this project on your terminal, shell or command line interface.
 
+
+## 
 **LINKING USERS**
 ===============
 
@@ -134,6 +136,9 @@ The `signature` key in our payload above is a hash that is generated from concat
 If all is set, we proceed to linking our user. To link a user we need to send our JSON payload as a **POST** request to this endpoint `https://demostand.okaythis.com/gateway/link`.
 
 ```js
+
+//file: app/routes/linking/index.js
+
   const crypto = require('crypto')
   const axios = require('axios')
 
@@ -275,6 +280,8 @@ The `authParams` just contains a **_message_** (`guiText`) and the **_message he
 We can now proceed to sending our request to `Okay` like so.
 
 ```js
+//file: app/routes/auth/index.js
+
   const crypto = require('crypto')
   const axios = require('axios')
 
@@ -397,6 +404,8 @@ After Authorizing/Authenticating a user we can check the status of that request 
 Send a request to check the status of your transaction.
 
 ```js
+//file: app/routes/check/index.js
+
   const crypto = require('crypto')
   const axios = require('axios')
 
