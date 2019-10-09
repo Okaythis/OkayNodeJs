@@ -16,6 +16,11 @@ Debug App
   yarn debug
 ```
 
+Project Tools (Please install these tools)
+- Yarn
+- Nodejs
+- Postman (For testing server endpoints)
+
 # Getting Started with Integrating Okay to your server
 
  To proceed with Okay integration, you are required to create an account using this [link](https://okaythis.com/signup). Once you are successfully signed up, login in with the credentials that you used to create the account [here](https://demostand.okaythis.com/multi-tenant-admin/login).
@@ -63,6 +68,21 @@ To make our tenant useful we will be adding more information to the tenant to co
 To be able to recieve feedbacks from Okay servers you will need to add a valid callback url (A callback url is an endpoint on your server that will be used as a point of communication by **Okay** to notify your server about the status of transactions/authentication) to the **Callback** input field. We will also need to generate a secret secure token(or secret) that will be used to verify all transactions by **Okay** secure servers. The token could be any aphanumeric secure string that contains between 0-30 characters and must be kept secret.
 
 **Note:** we will be referring to our **Token** as **secret** in further illustrations.
+
+## How to configure this server
+
+After you have successfully created a tenant on Okay, we can now use our credentials to configure this server to make it work. 
+
+You have to locate the `.env` file on from the root of the project. Then replace the `TENANT_ID` to your own tenant id and `SECRET` to your tenant secret like so.
+```js
+// .env
+
+PSS_BASE_URL = 'http://protdemo.demohoster.com'
+TENANT_ID =REPLACE_WITH_YOUR_TENANT_ID // change from 50001 to your tenant id
+SECRET =REPLACE_WITH_YOUR_TENANT_SECRET // change from secret to your tenant secret
+```
+
+If you have setup the variables correctly please run `yarn debug` from the root of this project on your terminal, shell or command line interface.
 
 **LINKING USERS**
 ===============
