@@ -84,12 +84,11 @@ SECRET =REPLACE_WITH_YOUR_TENANT_SECRET // change from secret to your tenant sec
 
 If you have setup the variables correctly please run `yarn debug` from the root of this project on your terminal, shell or command line interface.
 
+## **Integration Guide**
 
-## 
-**LINKING USERS**
-===============
+### LINKING USERS
 
-Before we can authorize transactions using **Okay**, we need to link our users to **Okay** so that we can identify all transactions coming from different users.
+Before we can authorize transactions using **Okay** on our server, we need to link our users to **Okay** so that we can identify all transactions coming from different users.
 
 ### Provide a Unique Value Generator
 
@@ -206,8 +205,7 @@ When your request is correct you'll get a response with the following body:
 
 For better reference to all possible status code and messages you can recieve from **Okay** server please refer to this [link](https://github.com/Okaythis/okay-example/wiki/Server-Response-Status-Codes).
 
-**LINKING WITH OKAY MOBILE APP**
-============================
+## **LINKING WITH OKAY MOBILE APP**
 In other to test if your server is working properly, we strongly recommend you to download the **Okay** mobile app from Google Play Store for [Android](https://play.google.com/store/apps/details?id=com.protectoria.okaythis), or Apple App Store for [iOS](https://apps.apple.com/us/app/okay-this/id1445714228).
 
 ## STEPS TO LINKING ON MOBILE APP
@@ -240,8 +238,8 @@ If all goes smoothly, you will see a screen like the one below.
 
 <img src="./app/public/images/success-screen.png" alt="Success Screen" width="400" />
 
-**Authenticate User/Authorize User Action**
-==========================================
+### **Authenticate User/Authorize User Action**
+
 
 After Linking a user, we can now authenticate that user or authorize the user's action.
 
@@ -381,8 +379,8 @@ For better reference to all possible status code and messages you can recieve fr
 
 The `sessionExternalId` can be used to check the status of this request. We will see shortly, in the **Check Authentication/Authorization Status** section, how we can use the  `sessionExternalId` value retrieved from the response to check the status of our transaction.
 
-**Check Authentication/Authorization Status**
-=============================================
+### **Check Authentication/Authorization Status**
+
 
 After Authorizing/Authenticating a user we can check the status of that request by sending a JSON payload as a **POST** request to this endpoint `https://demostand.okaythis.com/gateway/check` on **Okay** Server.
 
