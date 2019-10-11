@@ -106,7 +106,7 @@ Before we proceed to linking your users to **Okay**. We need to generate and sto
 
 The `tenantId` key in our payload above, is the **ID** we got from our ***Tenants*** table. Please refer to **Integrating Okay to your Server** section of this document if you don't already have your tenant id.
 
-The `userExternalId` key in our palyload above is the **User Unique Identifier** you created for your users in order to differentiate them as described in the **Provide a Unique Value Generator** section of this documentation above.
+The `userExternalId` key in our payload above is the **User Unique Identifier** you created for your users in order to differentiate them as described in the **Provide a Unique Value Generator** section of this documentation above.
 
 The `signature` key in our payload above is a hash that is generated from concatenating your `tenantId` + `userExternalId` + `secret` (also know as the **Token** you added to your tenant) then passing the concatenated string as value to `SHA256()` algorithm. Then we encode whatever value or string we get from the `SHA256()` algorithm in `BASE64`.
 
