@@ -77,7 +77,7 @@ You have to locate the `.env` file on the project root folder. Then replace the 
 ```js
 // .env
 
-PSS_BASE_URL = 'http://protdemo.demohoster.com'
+PSS_BASE_URL = 'https://demostand.okaythis.com'
 TENANT_ID =REPLACE_WITH_YOUR_TENANT_ID // change from 50001 to your tenant id
 SECRET =REPLACE_WITH_YOUR_TENANT_SECRET // change from secret to your tenant secret
 ```
